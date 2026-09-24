@@ -198,9 +198,30 @@ function astraInitCounters () {
     counters.forEach(el => observer.observe(el))
 }
 
+// v2: mouse-follow spotlight glow on the homepage hero
+function astraInitSpotlight () {
+    const hero = document.getElementById('astra-hero')
+    if (!hero || hero.dataset.astraSpotlightBound) return
+    hero.dataset.astraSpotlightBound = 'true'
+
+    let raf = null
+    hero.addEventListener('pointermove', (e) => {
+        if (raf) return
+        raf = requestAnimationFrame(() => {
+            const rect = hero.getBoundingClientRect()
+            const x = ((e.clientX - rect.left) / rect.width) * 100
+            const y = ((e.clientY - rect.top) / rect.height) * 100
+            hero.style.setProperty('--spotlight-x', x + '%')
+            hero.style.setProperty('--spotlight-y', y + '%')
+            raf = null
+        })
+    })
+}
+
 function astraInitMotion () {
     astraInitReveal()
     astraInitCounters()
+    astraInitSpotlight()
 }
 
 document.addEventListener('DOMContentLoaded', astraInitMotion)

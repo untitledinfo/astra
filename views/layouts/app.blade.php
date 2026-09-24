@@ -99,11 +99,12 @@
     <div id="astra-progress" class="astra-progress-bar" aria-hidden="true"></div>
 
     @if (theme('grid_background', true))
-    <div class="astra-grid-bg fixed inset-0 -z-10" aria-hidden="true"></div>
+    <div class="astra-grid-bg astra-grid-bg-v2 fixed inset-0 -z-10" aria-hidden="true"></div>
     @endif
 
     @if (theme('glow_effects', true))
-    <div class="astra-glow-field" aria-hidden="true">
+    <div class="astra-aurora" aria-hidden="true">
+        <span></span>
         <span></span>
         <span></span>
     </div>

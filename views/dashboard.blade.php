@@ -8,7 +8,7 @@
 
         <div class="grid gap-8 items-start">
             <!-- Active Services -->
-            <div class="astra-card group astra-reveal p-5">
+            <div class="astra-card astra-card-beam group astra-reveal p-5">
                 <div class="flex items-center justify-between mb-6">
                     <div class="flex items-center gap-3">
                         <div class="bg-background-secondary border border-neutral p-2 rounded-xl group-hover:border-primary/50 transition-colors">
@@ -32,7 +32,7 @@
 
             <!-- Open Tickets -->
             @if(!config('settings.tickets_disabled', false))
-            <div class="astra-card group astra-reveal p-5">
+            <div class="astra-card astra-card-beam group astra-reveal p-5">
                 <div class="flex items-center justify-between mb-6">
                     <div class="flex items-center gap-3">
                         <div class="bg-background-secondary border border-neutral p-2 rounded-xl group-hover:border-primary/50 transition-colors">
@@ -62,7 +62,7 @@
 
         <div class="grid gap-8 items-start">
             <!-- Unpaid Invoices -->
-            <div class="astra-card group astra-reveal p-5">
+            <div class="astra-card astra-card-beam group astra-reveal p-5">
                 <div class="flex items-center justify-between mb-6">
                     <div class="flex items-center gap-3">
                         <div class="bg-background-secondary border border-neutral p-2 rounded-xl group-hover:border-primary/50 transition-colors">

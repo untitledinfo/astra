@@ -47,6 +47,130 @@ return [
             'default' => "## Power Your Next Server.\nHigh-performance game and cloud hosting built for players, creators and communities.",
         ],
 
+        // --- Astra: "Why choose us" bento features (v2 addition) ---
+        [
+            'name' => 'features_enabled',
+            'label' => 'Show "Why choose us" Section',
+            'type' => 'checkbox',
+            'default' => true,
+            'database_type' => 'boolean',
+        ],
+        [
+            'name' => 'feature_1_title',
+            'label' => 'Feature 1 — Title',
+            'type' => 'text',
+            'default' => 'NVMe-backed performance',
+        ],
+        [
+            'name' => 'feature_1_text',
+            'label' => 'Feature 1 — Text',
+            'type' => 'text',
+            'default' => 'Every plan runs on fast NVMe storage for quick loads and smooth gameplay.',
+        ],
+        [
+            'name' => 'feature_2_title',
+            'label' => 'Feature 2 — Title',
+            'type' => 'text',
+            'default' => 'Instant deployment',
+        ],
+        [
+            'name' => 'feature_2_text',
+            'label' => 'Feature 2 — Text',
+            'type' => 'text',
+            'default' => 'Your server spins up automatically the moment payment clears.',
+        ],
+        [
+            'name' => 'feature_3_title',
+            'label' => 'Feature 3 — Title',
+            'type' => 'text',
+            'default' => 'Real support',
+        ],
+        [
+            'name' => 'feature_3_text',
+            'label' => 'Feature 3 — Text',
+            'type' => 'text',
+            'default' => 'A ticket away whenever you need a hand.',
+        ],
+        [
+            'name' => 'feature_4_title',
+            'label' => 'Feature 4 — Title',
+            'type' => 'text',
+            'default' => 'Full control panel',
+        ],
+        [
+            'name' => 'feature_4_text',
+            'label' => 'Feature 4 — Text',
+            'type' => 'text',
+            'default' => 'Manage services, invoices and tickets from one dashboard.',
+        ],
+
+        // --- Astra: real stats strip (v2 addition) ---
+        [
+            'name' => 'stats_enabled',
+            'label' => 'Show Stats Strip (real counts, not editable)',
+            'type' => 'checkbox',
+            'default' => true,
+            'database_type' => 'boolean',
+            'description' => 'Shows live customer and active-service counts pulled from your database.',
+        ],
+
+        // --- Astra: FAQ (v2 addition) ---
+        [
+            'name' => 'faq_enabled',
+            'label' => 'Show FAQ Section',
+            'type' => 'checkbox',
+            'default' => true,
+            'database_type' => 'boolean',
+        ],
+        [
+            'name' => 'faq_1_q',
+            'label' => 'FAQ 1 — Question',
+            'type' => 'text',
+            'default' => 'How fast is deployment?',
+        ],
+        [
+            'name' => 'faq_1_a',
+            'label' => 'FAQ 1 — Answer',
+            'type' => 'textarea',
+            'default' => 'Most services deploy automatically within a minute or two of payment clearing.',
+        ],
+        [
+            'name' => 'faq_2_q',
+            'label' => 'FAQ 2 — Question',
+            'type' => 'text',
+            'default' => 'Can I upgrade my plan later?',
+        ],
+        [
+            'name' => 'faq_2_a',
+            'label' => 'FAQ 2 — Answer',
+            'type' => 'textarea',
+            'default' => 'Yes — open a ticket or use the upgrade option on your service page any time.',
+        ],
+        [
+            'name' => 'faq_3_q',
+            'label' => 'FAQ 3 — Question',
+            'type' => 'text',
+            'default' => 'What payment methods do you accept?',
+        ],
+        [
+            'name' => 'faq_3_a',
+            'label' => 'FAQ 3 — Answer',
+            'type' => 'textarea',
+            'default' => 'Whatever payment gateways are enabled at checkout — see the payment step for the current list.',
+        ],
+        [
+            'name' => 'faq_4_q',
+            'label' => 'FAQ 4 — Question',
+            'type' => 'text',
+            'default' => 'How do I get support?',
+        ],
+        [
+            'name' => 'faq_4_a',
+            'label' => 'FAQ 4 — Answer',
+            'type' => 'textarea',
+            'default' => 'Open a support ticket from your dashboard and our team will get back to you.',
+        ],
+
         // --- Astra: announcement bar ---
         [
             'name' => 'announcement_enabled',

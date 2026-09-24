@@ -1,7 +1,7 @@
 <nav
     x-data="{}"
     :class="scrolled ? 'astra-nav-scrolled' : 'bg-background-secondary/95'"
-    class="w-full px-4 lg:px-8 border-b border-neutral md:h-16 flex md:flex-row flex-col justify-between fixed {{ theme('announcement_enabled', false) ? 'top-9' : 'top-0' }} z-20 transition-[background-color,box-shadow] duration-300">
+    class="astra-nav-v2 w-full px-4 lg:px-8 border-b border-neutral md:h-16 flex md:flex-row flex-col justify-between fixed {{ theme('announcement_enabled', false) ? 'top-9' : 'top-0' }} z-20 transition-[background-color,box-shadow] duration-300">
     <div
         x-data="{ 
             slideOverOpen: false,
@@ -15,7 +15,7 @@
 
             <div class="flex flex-row items-center">
                 <a href="{{ route('home') }}" class="flex flex-row items-center h-10 gap-2" wire:navigate>
-                    <x-logo class="h-8" />
+                    <x-logo class="h-8 astra-logo-glow" />
                     @if(theme('logo_display', 'logo-and-name') != 'logo-only')
                     <span class="text-xl font-bold leading-none flex items-center">{{ config('app.name') }}</span>
                     @endif
