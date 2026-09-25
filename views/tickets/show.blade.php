@@ -1,16 +1,21 @@
 <div class="container mt-14">
-    <div class="bg-background-secondary p-6 rounded-xl mt-2">
-        <h1 class="text-2xl font-semibold">Ticket #{{ $ticket->id }} - {{ $ticket->subject }}</h1>
+    <div class="astra-card astra-card-beam p-6 mt-2">
+        <div class="flex items-center gap-3 mb-4">
+            <span class="shrink-0 inline-flex items-center justify-center size-11 rounded-xl bg-gradient-to-br from-primary to-secondary text-white shadow-[0_8px_30px_-8px_hsl(var(--color-primary)/0.6)]">
+                <x-ri-customer-service-2-line class="size-5" />
+            </span>
+            <h1 class="text-2xl font-semibold">Ticket #{{ $ticket->id }} - {{ $ticket->subject }}</h1>
+        </div>
 
         <div class="md:grid grid-cols-4 flex flex-col gap-4">
             <div class="md:col-span-3">
                 <div class="flex flex-col gap-4 max-h-[60vh] overflow-y-auto pr-4" wire:poll.10s>
                     @foreach ($ticket->messages()->with('user')->get() as $index => $message)
-                    <div class="bg-background-secondary hover:bg-background-secondary/80 border border-neutral p-4 rounded-xl w-full max-w-[80%]  {{ $message->user_id === $ticket->user_id ? 'ml-auto' : 'mr-auto' }}"
+                    <div class="astra-card astra-card-hover p-4 w-full max-w-[80%] {{ $message->user_id === $ticket->user_id ? 'ml-auto' : 'mr-auto border-primary/30' }}"
                         @if ($loop->last) x-data x-init="$nextTick(() => $el.scrollIntoView({ block: 'end' }))" @endif>
                         <div class="flex items-center justify-between gap-4">
                             <div class="flex items-center gap-3">
-                                <img src="{{ $message->user->avatar }}" class="size-8 rounded-full border border-neutral bg-background" alt="{{ $message->user->name }} avatar" />
+                                <img src="{{ $message->user->avatar }}" class="size-8 rounded-full border-2 border-primary/40 bg-background" alt="{{ $message->user->name }} avatar" />
                                 <div class="flex flex-col">
                                     <h2 class="text-lg font-semibold">{{ $message->user->name }}</h2>
                                     <p class="text-sm text-gray-500">{{ $message->created_at->diffForHumans() }}</p>
@@ -28,7 +33,7 @@
                             @foreach($message->attachments as $attachment)
                             <div class="mt-2">
                                 <a href="{{ route('tickets.attachments.show', $attachment) }}"
-                                    class="text-sm rounded-xl bg-gray-100 flex items-center dark:bg-gray-800 p-1 w-fit">
+                                    class="text-sm rounded-xl bg-background-secondary border border-neutral flex items-center p-1 w-fit">
                                     @if($attachment->canPreview())
                                     <img src="{{ route('tickets.attachments.show', $attachment) }}"
                                         alt="{{ $attachment->filename }}" class="max-w-full">
@@ -83,7 +88,7 @@
                             x-on:livewire-upload-progress="progress = $event.detail.progress"
                             x-on:livewire-upload-error="uploading = false; selectedFiles = []; progress = 0"
                             x-on:livewire-upload-cancel="uploading = false; progress = 0;">
-                            <div class="flex justify-center rounded-xl bg-background-secondary border border-dashed border-neutral px-6 py-2"
+                            <div class="flex justify-center rounded-xl bg-background-secondary border border-dashed border-neutral hover:border-primary/40 transition-colors px-6 py-2"
                                 @dragover.prevent="drop = true" @dragleave.prevent="drop = false"
                                 @drop.prevent="handleDrop($event)" :class="{'bg-background-secondary/50': drop}">
                                     <!-- Upload Progress Bar -->
@@ -114,7 +119,7 @@
                                     <div class="flex flex-wrap items-center justify-center gap-2 mt-1">
                                         <template x-for="file in selectedFiles" :key="file.name">
                                             <div
-                                                class="text-sm rounded-xl bg-gray-100 flex items-center gap-2 dark:bg-gray-800 p-1 py-0 w-fit">
+                                                class="text-sm rounded-xl bg-background-secondary border border-neutral flex items-center gap-2 p-1 py-0 w-fit">
                                                 <span class="flex-1" x-text="file.name"></span>
                                                 <button type="button"
                                                     class="text-red-500 hover:text-red-700 text-lg h-fit"
@@ -158,28 +163,35 @@
 
             <div class="md:order-last order-first w-full col-span-3 sm:col-auto">
                 <!-- Show subject and status -->
-                <div class="flex flex-col w-full col-span-1">
-                    <h2 class="text-2xl font-semibold bg-background-secondary p-2 px-4 rounded-xl mb-2">
+                <div class="astra-card p-5 flex flex-col gap-4">
+                    <h2 class="text-lg font-semibold flex items-center gap-2">
+                        <x-ri-information-line class="size-5 text-primary" />
                         {{ __('ticket.ticket_details') }}
                     </h2>
-                    <div class="font-semibold flex md:flex-col justify-between bg-background-secondary p-2 px-4 rounded-xl gap-2">
-                        <h4 class="h-fit">{{ __('ticket.subject') }}:</h4> {{ $ticket->subject }}
+                    <div class="flex flex-col gap-3 text-sm">
+                        <div class="flex justify-between gap-2 pb-3 border-b border-neutral">
+                            <span class="text-muted">{{ __('ticket.subject') }}</span>
+                            <span class="font-medium text-right">{{ $ticket->subject }}</span>
+                        </div>
+                        <div class="flex justify-between gap-2 pb-3 border-b border-neutral">
+                            <span class="text-muted">{{ __('ticket.status') }}</span>
+                            <span class="font-medium">{{ ucfirst($ticket->status) }}</span>
+                        </div>
+                        <div class="flex justify-between gap-2 pb-3 border-b border-neutral">
+                            <span class="text-muted">{{ __('ticket.priority') }}</span>
+                            <span class="font-medium">{{ ucfirst($ticket->priority) }}</span>
+                        </div>
+                        <div class="flex justify-between gap-2 {{ $ticket->department ? 'pb-3 border-b border-neutral' : '' }}">
+                            <span class="text-muted">{{ __('ticket.created_at') }}</span>
+                            <span class="font-medium">{{ $ticket->created_at->diffForHumans() }}</span>
+                        </div>
+                        @if ($ticket->department)
+                        <div class="flex justify-between gap-2">
+                            <span class="text-muted">{{ __('ticket.department') }}</span>
+                            <span class="font-medium">{{ $ticket->department }}</span>
+                        </div>
+                        @endif
                     </div>
-                    <div class="font-semibold flex md:flex-col justify-between bg-background-secondary p-2 px-4 rounded-xl">
-                        <h4>{{ __('ticket.status') }}:</h4> {{ ucfirst($ticket->status) }}
-                    </div>
-                    <div class="font-semibold flex md:flex-col justify-between bg-background-secondary p-2 px-4 rounded-xl">
-                        <h4>{{ __('ticket.priority') }}:</h4> {{ ucfirst($ticket->priority) }}
-                    </div>
-                    <div class="font-semibold flex md:flex-col justify-between bg-background-secondary p-2 px-4 rounded-xl">
-                        <h4>{{ __('ticket.created_at') }}:</h4> {{ $ticket->created_at->diffForHumans() }}
-                    </div>
-                    @if ($ticket->department)
-                    <div class="font-semibold flex md:flex-col justify-between bg-background-secondary p-2 px-4 rounded-xl">
-                        <h4>{{ __('ticket.department') }}:</h4>
-                        {{ $ticket->department }}
-                    </div>
-                    @endif
                 </div>
             </div>
         </div>

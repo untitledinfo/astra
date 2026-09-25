@@ -209,6 +209,36 @@ return [
             'default' => true,
             'database_type' => 'boolean',
         ],
+
+        // --- Astra: optional custom background image (v2.2 addition) ---
+        [
+            'name' => 'background_image_url',
+            'label' => 'Custom Background Image URL (optional)',
+            'type' => 'text',
+            'default' => '',
+            'description' => 'When set, this replaces the animated aurora/grid background site-wide.',
+        ],
+        [
+            'name' => 'background_image_opacity',
+            'label' => 'Background Image Opacity (%)',
+            'type' => 'text',
+            'default' => '25',
+        ],
+        [
+            'name' => 'background_image_blur',
+            'label' => 'Background Image Blur (px)',
+            'type' => 'text',
+            'default' => '0',
+        ],
+
+        // --- Astra: nav layout (v2.2 addition) ---
+        [
+            'name' => 'nav_logo_center',
+            'label' => 'Center the Logo in the Navbar',
+            'type' => 'checkbox',
+            'default' => false,
+            'database_type' => 'boolean',
+        ],
         [
             'name' => 'default_appearance',
             'label' => 'Default Appearance',

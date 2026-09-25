@@ -1,6 +1,6 @@
 <nav
     x-data="{}"
-    :class="scrolled ? 'astra-nav-scrolled' : 'bg-background-secondary/95'"
+    :class="scrolled ? 'astra-nav-scrolled' : 'astra-nav-translucent'"
     class="astra-nav-v2 w-full px-4 lg:px-8 border-b border-neutral md:h-16 flex md:flex-row flex-col justify-between fixed {{ theme('announcement_enabled', false) ? 'top-9' : 'top-0' }} z-20 transition-[background-color,box-shadow] duration-300">
     <div
         x-data="{ 
@@ -10,10 +10,10 @@
         x-init="$watch('slideOverOpen', value => { document.documentElement.style.overflow = value ? 'hidden' : '' })"
         class="relative z-50 w-full h-auto">
         <div
-            class="flex flex-row items-center justify-between h-16"
+            class="relative flex flex-row items-center justify-between h-16"
             :class="hasAside ? 'w-full' : 'container'">
 
-            <div class="flex flex-row items-center">
+            <div class="flex flex-row items-center {{ theme('nav_logo_center', false) ? 'md:absolute md:left-1/2 md:-translate-x-1/2' : '' }}">
                 <a href="{{ route('home') }}" class="flex flex-row items-center h-10 gap-2" wire:navigate>
                     <x-logo class="h-8 astra-logo-glow" />
                     @if(theme('logo_display', 'logo-and-name') != 'logo-only')

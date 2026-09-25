@@ -221,11 +221,18 @@ a:hover > .astra-shine::after {
     animation: var(--animate-astra-shimmer);
 }
 
+/* Default (unscrolled) nav state: translucent glass header, per request */
+.astra-nav-translucent {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background-color: hsl(var(--color-background-secondary) / 0.5);
+}
+
 /* Sticky navbar glass state (toggled via Alpine :class="{ 'astra-nav-scrolled': scrolled }") */
 .astra-nav-scrolled {
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    background-color: hsl(var(--color-background-secondary) / 0.75) !important;
+    background-color: hsl(var(--color-background-secondary) / 0.6) !important;
     box-shadow: 0 1px 0 hsl(var(--color-neutral) / 0.6);
 }
 

@@ -1,8 +1,8 @@
 <div>
     <div class="flex flex-col gap-6">
         <h1 class="sr-only">{{ config('app.name', 'Paymenter') }} — {{ theme('seo_description') }}</h1>
-        <div class="astra-spotlight relative w-full overflow-hidden bg-background-secondary py-24 border-b border-neutral" id="astra-hero">
-            <div class="container relative animate-astra-in">
+        <div class="astra-spotlight astra-card astra-card-beam relative w-full overflow-hidden container mt-8" id="astra-hero">
+            <div class="relative px-6 py-16 sm:px-12 sm:py-20 animate-astra-in">
                 <span class="astra-eyebrow mb-5">
                     <span class="astra-eyebrow-dot"></span>
                     Now deploying instantly
@@ -73,7 +73,14 @@
 
         @if (theme('features_enabled', true))
         <div class="container mt-8">
-            <h2 class="text-xl font-semibold mb-5 astra-reveal">Why choose us</h2>
+            <div class="astra-reveal mb-6">
+                <span class="astra-eyebrow mb-3">
+                    <span class="astra-eyebrow-dot"></span>
+                    Built different
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-bold">Why choose us</h2>
+                <p class="text-muted mt-1 max-w-xl">A hosting setup built around performance, speed, and actually getting help when you need it.</p>
+            </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
                 @php
                     $astraFeatureIcons = ['bolt', 'rocket', 'chat', 'shield'];

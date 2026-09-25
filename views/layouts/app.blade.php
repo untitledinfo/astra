@@ -98,16 +98,22 @@
 
     <div id="astra-progress" class="astra-progress-bar" aria-hidden="true"></div>
 
-    @if (theme('grid_background', true))
-    <div class="astra-grid-bg astra-grid-bg-v2 fixed inset-0 -z-10" aria-hidden="true"></div>
-    @endif
-
-    @if (theme('glow_effects', true))
-    <div class="astra-aurora" aria-hidden="true">
-        <span></span>
-        <span></span>
-        <span></span>
+    @if (theme('background_image_url'))
+    <div class="fixed inset-0 -z-10 bg-cover bg-center" aria-hidden="true"
+        style="background-image: url('{{ theme('background_image_url') }}'); opacity: {{ (float) theme('background_image_opacity', 25) / 100 }}; filter: blur({{ (int) theme('background_image_blur', 0) }}px);">
     </div>
+    @else
+        @if (theme('grid_background', true))
+        <div class="astra-grid-bg astra-grid-bg-v2 fixed inset-0 -z-10" aria-hidden="true"></div>
+        @endif
+
+        @if (theme('glow_effects', true))
+        <div class="astra-aurora" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        @endif
     @endif
 
     @if (theme('announcement_enabled', false))

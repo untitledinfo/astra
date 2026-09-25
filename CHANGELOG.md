@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.2.0
+- New reusable page-header component (matching the v2 look) — now used on Tickets, alongside the earlier Services/Invoices.
+- Redesigned Support Tickets pages: ticket list now uses gaming-style cards with a border-beam hover, cleaner status pills, and a page header; the conversation view got a restyled header, message bubbles, and a consolidated "Ticket details" card — all the upload/attachment/close-ticket functionality is untouched.
+- Hero is now a contained, bordered card with its own glow shadow and spotlight, instead of a full-bleed banner.
+- "Why choose us" got a fuller header treatment (eyebrow tag + subtitle).
+- New: optional custom background image (URL + opacity + blur, in theme settings) — when set, it replaces the animated aurora/grid automatically.
+- New: optional centered navbar logo toggle.
+- Nav is now translucent (50% background opacity + blur) by default, slightly less transparent once scrolled, for a proper glass-header feel.
+
 ## 2.1.0
 - New homepage sections (each with its own on/off toggle in theme settings): a "Why choose us" bento features grid (admin-editable titles/text), a live stats strip (real customer + active-service counts, no fake numbers), and an FAQ accordion (4 admin-editable Q&A pairs).
 - Category cards on the homepage now show a real plan-count badge pulled from your actual products.

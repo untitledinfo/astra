@@ -1,36 +1,38 @@
 <div class="container mt-14 space-y-4">
-    <div class="flex flex-row justify-between">
-        <x-navigation.breadcrumb />
-        <x-navigation.link :href="route('tickets.create')" class="flex items-center gap-2">
-            <x-ri-add-line class="size-5" />
-            <span>{{ __('ticket.create_ticket') }}</span>
-        </x-navigation.link>
-    </div>
+    <x-page-header icon="ticket" title="Support Tickets" subtitle="Open a new one or follow up on an existing conversation.">
+        <x-slot:actions>
+            <x-navigation.link :href="route('tickets.create')" class="relative overflow-hidden flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
+                <span class="astra-shine"></span>
+                <x-ri-add-line class="size-5" />
+                <span>{{ __('ticket.create_ticket') }}</span>
+            </x-navigation.link>
+        </x-slot:actions>
+    </x-page-header>
+
     @forelse ($tickets as $ticket)
     <a href="{{ route('tickets.show', $ticket) }}" wire:navigate>
-        <div class="bg-background-secondary hover:bg-background-secondary/80 border border-neutral p-4 rounded-xl mb-4">
-            <div class="flex items-center justify-between mb-2">
-                <div class="flex items-center gap-3">
-                    <div class="bg-secondary/10 p-2 rounded-xl">
+        <div class="astra-card astra-card-hover astra-card-beam astra-reveal p-4 mb-4" data-astra-delay="{{ min($loop->iteration, 8) }}">
+            <div class="flex items-center justify-between gap-3 mb-2">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="shrink-0 bg-secondary/10 p-2 rounded-xl">
                         <x-ri-ticket-line class="size-5 text-secondary" />
                     </div>
-                    <span class="font-medium">#{{ $ticket->id }} - {{ $ticket->subject }}</span>
+                    <span class="font-medium truncate">#{{ $ticket->id }} - {{ $ticket->subject }}</span>
                 </div>
-                <div class="size-5 rounded-xl p-0.5
-                    @if ($ticket->status == 'open') text-success bg-success/20 
-                    @elseif($ticket->status == 'closed') text-inactive bg-inactive/20
-                    @else text-info bg-info/20 
+                <span class="shrink-0 inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full
+                    @if ($ticket->status == 'open') text-success bg-success/15
+                    @elseif($ticket->status == 'closed') text-inactive bg-inactive/15
+                    @else text-info bg-info/15
                     @endif">
-                    @if ($ticket->status == 'open')
-                        <x-ri-add-circle-fill />
-                    @elseif($ticket->status == 'closed')
-                        <x-ri-forbid-fill />
-                    @elseif($ticket->status == 'replied')
-                        <x-ri-chat-smile-2-fill />
-                    @endif
-                </div>
+                    <span class="size-1.5 rounded-full astra-status-dot
+                        @if ($ticket->status == 'open') bg-success
+                        @elseif($ticket->status == 'closed') bg-inactive
+                        @else bg-info
+                        @endif"></span>
+                    {{ ucfirst($ticket->status) }}
+                </span>
             </div>
-            <p class="text-base text-sm">
+            <p class="text-sm text-muted">
                 {{ __('ticket.last_activity') }}
                 {{ $ticket->messages()->orderBy('created_at', 'desc')->first()?->created_at->diffForHumans() }}
                 {{ $ticket->department ? ' - ' . $ticket->department : '' }}
@@ -38,8 +40,9 @@
         </div>
     </a>
     @empty
-    <div class="bg-background-secondary border border-neutral p-4 rounded-xl">
-        <p class="text-base text-sm">{{ __('ticket.no_tickets') }}</p>
+    <div class="astra-card p-6 text-center">
+        <x-ri-inbox-line class="size-8 mx-auto text-muted mb-2" />
+        <p class="text-sm text-muted">{{ __('ticket.no_tickets') }}</p>
     </div>
     @endforelse
 
