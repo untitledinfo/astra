@@ -7,7 +7,7 @@
             </h1>
             @endif
             @foreach (Cart::items() as $item)
-            <div class="flex flex-row justify-between w-full bg-background-secondary p-3 rounded-xl border border-neutral">
+            <div class="astra-card astra-card-hover astra-reveal flex flex-row justify-between w-full p-4">
                 <div class="flex flex-col gap-1">
                     <h2 class="text-2xl font-semibold">
                         {{ $item->product->name }}
@@ -59,7 +59,7 @@
         </div>
         <div class="flex flex-col gap-4">
             @if (Cart::items()->count() > 0)
-            <div class="flex flex-col gap-2 w-full col-span-1 bg-background-secondary p-3 rounded-xl border border-neutral">
+            <div class="astra-card astra-card-beam astra-reveal flex flex-col gap-2 w-full col-span-1 p-5">
                 <h2 class="text-2xl font-semibold mb-3">
                     {{ __('product.order_summary') }}
                 </h2>
@@ -104,7 +104,7 @@
                     @endif
 
                     <div class="flex flex-row justify-end gap-2">
-                        <x-button.primary wire:click="checkout" class="h-fit" wire:loading.attr="disabled">
+                        <x-button.primary wire:click="checkout" class="h-fit !w-auto px-6" wire:loading.attr="disabled">
                             <x-loading target="checkout" />
                             <div wire:loading.remove wire:target="checkout">
                                 {{ __('product.checkout') }}

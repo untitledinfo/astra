@@ -1,18 +1,23 @@
 <div class="container mt-14">
     @if($invoice = $service->invoices()->where('status', 'pending')->first())
     <div class="w-full mb-4">
-        <div class="bg-yellow-600/20 border-l-4 border-yellow-500 text-yellow-300 p-4 rounded-xl">
+        <div class="bg-warning/15 border-l-4 border-warning text-warning p-4 rounded-xl">
             <p class="font-medium">
                 ⚠️ {{ __('services.outstanding_invoice') }}
                 <a href="{{ route('invoices.show', $invoice)}}"
-                    class="underline hover:text-yellow-100 underline-offset-2">{{ __('services.view_and_pay') }}</a>.
+                    class="underline hover:opacity-80 underline-offset-2">{{ __('services.view_and_pay') }}</a>.
             </p>
         </div>
     </div>
     @endif
-    <div class="bg-background-secondary border border-neutral p-6 rounded-xl mt-2">
-        <div class="flex flex-col md:flex-row justify-between">
-            <h1 class="text-2xl font-semibold">{{ __('services.services') }}</h1>
+    <div class="astra-card astra-card-beam p-6 mt-2">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-2">
+            <div class="flex items-center gap-3">
+                <span class="shrink-0 inline-flex items-center justify-center size-11 rounded-xl bg-gradient-to-br from-primary to-secondary text-white shadow-[0_8px_30px_-8px_hsl(var(--color-primary)/0.6)]">
+                    <x-ri-server-line class="size-5" />
+                </span>
+                <h1 class="text-2xl font-semibold">{{ $service->label }}</h1>
+            </div>
         </div>
         <div class="grid md:grid-cols-2 gap-4 my-4">
             <div>
@@ -45,12 +50,12 @@
                     <div class="flex items-center text-base">
                         <span class="mr-2">{{ __('services.status') }}:</span>
                         @if($service->cancellation && $service->status == 'active')
-                        <span class="font-semibold text-orange-500">
+                        <span class="font-semibold text-warning">
                             {{ __('services.statuses.cancellation_pending') }}
                         </span>
                         @else
                         <span
-                            class="font-semibold @if ($service->status == 'active') text-green-500 @elseif($service->status == 'cancelled') text-red-500  @else text-orange-500 @endif">
+                            class="font-semibold @if ($service->status == 'active') text-success @elseif($service->status == 'cancelled') text-inactive @else text-warning @endif">
                             {{ __('services.statuses.' . $service->status) }}
                         </span>
                         @endif
@@ -129,12 +134,12 @@
     </div>
 
     @if (count($views) > 0)
-    <div class="bg-background-secondary rounded-xl mt-2">
+    <div class="astra-card p-4 mt-4">
         @if (count($views) > 1)
         <div class="flex w-fit mb-2 flex-row flex-wrap">
             @foreach ($views as $view)
             <button wire:click="changeView('{{ $view['name'] }}')"
-                class="px-4 py-2 -mb-px focus:outline-none {{ $view['name'] == $currentView ? 'border-b-2 border-gray-400 font-semibold' : 'text-base border-b border-gray-500 ' }}">
+                class="px-4 py-2 -mb-px focus:outline-none transition-colors {{ $view['name'] == $currentView ? 'border-b-2 border-primary font-semibold text-primary' : 'text-muted border-b border-neutral hover:text-base' }}">
                 {{ $view['label'] }}
             </button>
             @endforeach

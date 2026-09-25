@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <div class="bg-background-secondary border border-neutral p-12 rounded-xl mt-2">
+        <div class="astra-card astra-card-beam p-8 sm:p-12 mt-2">
             <h1 class="text-2xl font-bold sm:text-3xl">
                 {{ !$invoice->number && config('settings.invoice_proforma', false) ? __('invoices.proforma_invoice', ['id'
             => $invoice->id]) : __('invoices.invoice', ['id' => $invoice->number]) }}
@@ -49,22 +49,22 @@
                 </div>
                 <div class="max-w-[300px] w-full">
                     @if ($invoice->status == 'paid')
-                    <div class="text-green-500 mt-6 text-lg text-center font-semibold">
+                    <div class="text-success mt-6 text-lg text-center font-semibold">
                         {{ __('invoices.paid') }}
                     </div>
                     @elseif ($invoice->status == 'pending')
                     @if($checkPayment || $invoice->transactions->where('status', \App\Enums\InvoiceTransactionStatus::Processing)->where('created_at', '>=', now()->subDays(1))->count() > 0)
-                    <div class="text-yellow-500 mb-6 text-lg text-center flex items-center justify-center">
+                    <div class="text-warning mb-6 text-lg text-center flex items-center justify-center">
                         {{ __('invoices.payment_processing') }}
-                        <x-ri-loader-5-fill aria-hidden="true" class="size-6 ms-2 fill-yellow-600 animate-spin" />
+                        <x-ri-loader-5-fill aria-hidden="true" class="size-6 ms-2 fill-warning animate-spin" />
                     </div>
                     @else
                     <div class="mb-6 text-lg text-center">
                         @if($invoice->transactions->where('status', \App\Enums\InvoiceTransactionStatus::Processing)->count() > 0)
-                        <span class="text-yellow-500">{{ __('invoices.payment_processing') }}</span>
+                        <span class="text-warning">{{ __('invoices.payment_processing') }}</span>
                         <p class="text-sm">{{ __('invoices.duplicate_payment') }}</p>
                         @else
-                        <span class="text-yellow-500">{{ __('invoices.payment_pending') }}</span>
+                        <span class="text-warning">{{ __('invoices.payment_pending') }}</span>
                         @endif
                     </div>
                     <x-button.primary wire:click="$set('showPayModal', true)" class="mt-2" wire:loading.attr="disabled"
@@ -125,24 +125,24 @@
             <div class="space-y-3 sm:text-right sm:ml-auto sm:w-72 mt-10">
                 @if ($invoice->formattedTotal->tax > 0)
                 <div class="flex justify-between">
-                    <div class="text-sm font-medium text-gray-500 uppercase dark:text-base">{{ __('invoices.subtotal') }}
+                    <div class="text-sm font-medium text-muted uppercase">{{ __('invoices.subtotal') }}
                     </div>
-                    <div class="text-base font-medium text-gray-900 dark:text-white">
+                    <div class="text-base font-medium text-base">
                         {{ $invoice->formattedTotal->format($invoice->formattedTotal->subtotal) }}
                     </div>
                 </div>
                 <div class="flex justify-between">
-                    <div class="text-sm font-medium text-gray-500 uppercase dark:text-base">
+                    <div class="text-sm font-medium text-muted uppercase">
                         {{ $invoice->tax->name }} ({{ $invoice->tax->rate }}%)
                     </div>
-                    <div class="text-base font-medium text-gray-900 dark:text-white">
+                    <div class="text-base font-medium text-base">
                         {{ $invoice->formattedTotal->formatted->tax }}
                     </div>
                 </div>
                 @endif
                 <div class="flex justify-between">
-                    <div class="text-base font-semibold text-gray-900 uppercase dark:text-white">Total</div>
-                    <div class="text-base font-bold text-gray-900 dark:text-white">
+                    <div class="text-base font-semibold text-base uppercase">Total</div>
+                    <div class="text-base font-bold text-base">
                         {{ $invoice->formattedTotal }}
                     </div>
                 </div>
@@ -150,7 +150,7 @@
 
             @if ($invoice->transactions->isNotEmpty())
             <div class="mt-12">
-                <h2 class="text-2xl font-bold">{{ __('invoices.transactions') }}</h2>
+                <h2 class="text-2xl font-bold mt-8 astra-reveal">{{ __('invoices.transactions') }}</h2>
                 <div class="mt-4 overflow-x-auto">
                     <table class="w-full">
                         <thead class="bg-background border border-neutral rounded-xl">
@@ -193,16 +193,16 @@
                                 </td>
                                 <td class="p-4 font-normal whitespace-nowrap">
                                     @if($transaction->status == \App\Enums\InvoiceTransactionStatus::Succeeded)
-                                    <span class="text-green-600 font-semibold">{{
+                                    <span class="text-success font-semibold">{{
                                     __('invoices.transaction_statuses.succeeded') }}</span>
                                     @elseif($transaction->status == \App\Enums\InvoiceTransactionStatus::Processing)
-                                    <span class="text-yellow-600 font-semibold flex items-center">
+                                    <span class="text-warning font-semibold flex items-center">
                                         {{ __('invoices.transaction_statuses.processing') }}
                                         <x-ri-loader-5-fill aria-hidden="true"
-                                            class="size-6 me-2 fill-yellow-600 animate-spin" />
+                                            class="size-6 me-2 fill-warning animate-spin" />
                                     </span>
                                     @elseif($transaction->status == \App\Enums\InvoiceTransactionStatus::Failed)
-                                    <span class="text-red-600 font-semibold">{{ __('invoices.transaction_statuses.failed')
+                                    <span class="text-danger font-semibold">{{ __('invoices.transaction_statuses.failed')
                                     }}</span>
                                     @endif
                                 </td>

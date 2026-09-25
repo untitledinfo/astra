@@ -1,9 +1,9 @@
 <div class="container mt-14 space-y-4">
-    <x-navigation.breadcrumb />
+    <x-page-header icon="invoices" title="{{ __('navigation.invoices') }}" subtitle="Billing history and anything still due." />
 
     @forelse ($invoices as $invoice)
     <a href="{{ route('invoices.show', $invoice) }}" wire:navigate>
-        <div class="bg-background-secondary hover:bg-background-secondary/80 border border-neutral p-4 rounded-xl mb-4">
+        <div class="astra-card astra-card-hover astra-card-beam astra-reveal p-4 mb-4" data-astra-delay="{{ min($loop->iteration, 8) }}">
         <div class="flex items-center justify-between mb-2">
             <div class="flex items-center gap-3">
             <div class="bg-secondary/10 p-2 rounded-xl">
@@ -15,28 +15,28 @@
             </span>
             <span class="text-base text-sm">{{ $invoice->formattedTotal }}</span>
             </div>
-            <div class="size-5 rounded-xl p-0.5
-                @if ($invoice->status == 'paid') text-success bg-success/20
-                @elseif($invoice->status == 'cancelled') text-info bg-info/20
-                @else text-warning bg-warning/20
+            <span class="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full
+                @if ($invoice->status == 'paid') text-success bg-success/15
+                @elseif($invoice->status == 'cancelled') text-info bg-info/15
+                @else text-warning bg-warning/15
                 @endif">
-                @if ($invoice->status == 'paid')
-                    <x-ri-checkbox-circle-fill />
-                @elseif($invoice->status == 'cancelled')
-                    <x-ri-forbid-fill />
-                @elseif($invoice->status == 'pending')
-                    <x-ri-error-warning-fill />
-                @endif
-            </div>
+                <span class="size-1.5 rounded-full astra-status-dot
+                    @if ($invoice->status == 'paid') bg-success
+                    @elseif($invoice->status == 'cancelled') bg-info
+                    @else bg-warning
+                    @endif"></span>
+                {{ ucfirst($invoice->status) }}
+            </span>
         </div>
         @foreach ($invoice->items as $item)
-            <p class="text-base text-sm">Item(s): {{ $item->description }} ({{ __('invoices.invoice_date')}}: {{ $invoice->created_at->format('d M Y') }})</p>
+            <p class="text-base text-sm text-muted">Item(s): {{ $item->description }} ({{ __('invoices.invoice_date')}}: {{ $invoice->created_at->format('d M Y') }})</p>
         @endforeach
         </div>
     </a>
     @empty
-    <div class="bg-background-secondary border border-neutral p-4 rounded-xl">
-        <p class="text-base text-sm">{{ __('invoices.no_invoices') }}</p>
+    <div class="astra-card p-6 text-center">
+        <x-ri-inbox-line class="size-8 mx-auto text-muted mb-2" />
+        <p class="text-sm text-muted">{{ __('invoices.no_invoices') }}</p>
     </div>
     @endforelse
 

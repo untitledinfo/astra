@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.3.0 — full pass
+- Styled every remaining major customer-facing page with the v2 design system (cards, border-beam, page headers, reveal-on-scroll): Services (list + detail), Invoices (list + detail), Products/category browsing + single product page, Cart, and both error pages (404/500).
+- Language switcher now shows a country flag next to each language.
+- Fixed several more hardcoded colors that ignored the theme's palette (stray `gray-900`/`green-500`/`yellow-500`/`red-600` classes on invoices and services pages) — replaced with the proper success/warning/danger/base tokens so they respect whatever colors are set in theme settings and stay readable in both light and dark mode.
+- Still on the base Paymenter styling (not yet redesigned): checkout form, 2FA screen, and the service cancel/upgrade modals — all fully functional, just not restyled yet.
+
 ## 2.2.0
 - New reusable page-header component (matching the v2 look) — now used on Tickets, alongside the earlier Services/Invoices.
 - Redesigned Support Tickets pages: ticket list now uses gaming-style cards with a border-beam hover, cleaner status pills, and a page header; the conversation view got a restyled header, message bubbles, and a consolidated "Ticket details" card — all the upload/attachment/close-ticket functionality is untouched.

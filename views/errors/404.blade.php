@@ -3,18 +3,22 @@
         {{ __('errors.404.title') }}
     </x-slot>
 
-    <div class="container flex flex-col items-center justify-center text-center py-20">
-        <p class="text-base font-semibold text-primary">404</p>
-        <h1 class="mt-4 text-5xl font-semibold tracking-tight text-balance sm:text-7xl">
+    <div class="container flex flex-col items-center justify-center text-center py-24 animate-astra-in">
+        <span class="astra-eyebrow mb-6">
+            <span class="astra-eyebrow-dot"></span>
+            404
+        </span>
+        <h1 class="text-5xl font-extrabold tracking-tight sm:text-7xl astra-shimmer-text">
             {{ __('errors.404.title') }}
         </h1>
-        <p class="mt-6 text-lg font-medium text-pretty text-base/50 sm:text-xl/8">
+        <p class="mt-6 text-lg font-medium text-muted sm:text-xl/8 max-w-lg">
             {{ __('errors.404.message') }}
         </p>
         <div class="mt-10 flex items-center justify-center gap-x-6">
             <a href="{{ route('home') }}" wire:navigate>
-                <x-button.primary>
+                <x-button.primary class="!w-auto px-6">
                     {{ __('errors.404.return_home') }}
+                    <span class="astra-btn-arrow">→</span>
                 </x-button.primary>
             </a>
         </div>

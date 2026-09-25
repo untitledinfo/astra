@@ -2,12 +2,12 @@
     <div class="flex flex-col md:grid md:grid-cols-4 gap-4">
         <div class="flex flex-col gap-2">
             <div class="mx-auto container">
-                <h1 class="text-3xl font-bold">{{ $category->name }}</h1>
+                <h1 class="text-3xl font-bold astra-shimmer-text inline-block">{{ $category->name }}</h1>
                 <article class="prose dark:prose-invert">
                     {!! $category->description !!}
                 </article>
             </div>
-            <div class="flex flex-col bg-background-secondary hover:bg-background-secondary/80 border border-neutral p-4 rounded-xl">
+            <div class="astra-card flex flex-col p-4">
                 @foreach ($categories as $ccategory)
                 <!-- List all categories simple under each other -->
                 <a href="{{ route('category.show', ['category' => $ccategory->slug]) }}" wire:navigate
@@ -21,7 +21,7 @@
             @if (count($childCategories) >= 1)
             <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4 h-fit">
                 @foreach ($childCategories as $childCategory)
-                <div class="flex flex-col bg-background-secondary hover:bg-background-secondary/80 border border-neutral p-4 rounded-xl">
+                <div class="astra-card astra-card-hover astra-card-beam astra-reveal flex flex-col p-4">
                     @if(theme('small_images', false))
                     <div class="flex gap-x-3 items-center">
                         @endif
@@ -49,7 +49,7 @@
             @endif
             <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4 h-fit">
                 @foreach ($products as $product)
-                <div class="flex flex-col bg-background-secondary hover:bg-background-secondary/80 border border-neutral p-4 rounded-xl">
+                <div class="astra-card astra-card-hover astra-card-beam astra-reveal flex flex-col p-4">
                     @if(theme('small_images', false))
                     <div class="flex gap-x-3 items-center">
                         @endif
@@ -66,7 +66,7 @@
                         {!! $product->description !!}
                     </article>
                     @endif
-                    <h3 class="text-lg font-semibold mb-2">
+                    <h3 class="text-lg font-bold mb-2 text-primary">
                         {{ $product->price()->formatted->price }}
                     </h3>
                     <div class="mt-auto pt-2 flex items-center gap-2">
