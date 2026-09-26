@@ -2,7 +2,7 @@
     <div class="astra-card astra-card-beam animate-astra-in flex flex-col @if ($product->image) md:grid grid-cols-2 gap-16 p-6 @else p-6 @endif">
         @if ($product->image)
         <img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}"
-            class="w-full h-96 object-contain object-center rounded-xl border border-neutral">
+            class="w-full h-96 object-contain object-center rounded-2xl border border-neutral">
         @endif
         {{-- If your happiness depends on money, you will never be happy with yourself. --}}
         <div class="flex flex-col">

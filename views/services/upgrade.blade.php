@@ -31,7 +31,7 @@
                         @endif
                         @if ($service->product->image)
                         <img src="{{ Storage::url($service->product->image) }}" alt="{{ $service->product->name }}"
-                            class="rounded-xl {{ theme('small_images', false) ? 'w-14 h-fit' : 'w-full object-cover object-center' }}">
+                            class="rounded-2xl {{ theme('small_images', false) ? 'w-14 h-fit' : 'w-full object-cover object-center' }}">
                         @endif
                         <h2 class="text-xl font-bold">{{ $service->product->name }}</h2>
                         @if(theme('small_images', false))
@@ -75,7 +75,7 @@
                         @endif
                         @if ($product->image)
                         <img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}"
-                            class="rounded-xl {{ theme('small_images', false) ? 'w-14 h-fit' : 'w-full object-cover object-center' }}">
+                            class="rounded-2xl {{ theme('small_images', false) ? 'w-14 h-fit' : 'w-full object-cover object-center' }}">
                         @endif
                         <h2 class="text-xl font-bold">{{ $product->name }}</h2>
                         @if(theme('small_images', false))

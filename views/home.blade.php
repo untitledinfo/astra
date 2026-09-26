@@ -42,7 +42,7 @@
                         @endif
                         @if ($category->image)
                         <img src="{{ Storage::url($category->image) }}" alt="{{ $category->name }}"
-                            class="aspect-square rounded-xl {{ theme('small_images', false) ? 'w-14 h-fit' : 'w-full object-cover object-center' }}">
+                            class="aspect-square rounded-2xl {{ theme('small_images', false) ? 'w-14 h-fit' : 'w-full object-cover object-center' }}">
                         @endif
                         <div class="flex justify-between items-center">
                             <h3 class="text-xl font-semibold">{{ $category->name }}</h3>

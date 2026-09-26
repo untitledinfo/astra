@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.6.0
+- Redesigned the notification/toast system — proper success/danger colors (was hardcoded red-500), an icon, slide-in motion, instead of a plain colored box.
+- Redesigned the confirmation modal (used for cancel/delete confirmations app-wide) — gradient border, blurred backdrop, cleaner spacing.
+- Fixed the danger button: was hardcoded `red-700`/`rounded` regardless of theme colors — now uses the real danger token and matches the site-wide corner radius.
+
+## 2.5.0
+- Real flag images (via flagcdn) in the language switcher, replacing emoji — crisp and consistent across every OS/browser instead of relying on emoji font support. Built as its own dropdown so it's no longer limited to plain-text options.
+- Category, product and service images bumped to a softer `rounded-2xl` corner, matching the card system.
+- Page header icon badges (Services/Invoices/Tickets) now have a subtle pulsing ring for more visual presence.
+
 ## 2.4.0 — remaining pages done
 - Checkout page: main product panel is now a card, order summary is a sticky beam-card, checkout button spans full width with the arrow-slide.
 - 2FA screen upgraded to the gradient-border card, bigger/clearer code boxes, fixed a hardcoded red error color.

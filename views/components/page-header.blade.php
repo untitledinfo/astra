@@ -3,7 +3,8 @@
 <div {{ $attributes->merge(['class' => 'astra-page-header astra-card astra-card-beam astra-reveal flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-6 mb-6']) }}>
     <div class="relative flex items-center gap-4">
         @if ($icon)
-        <span class="shrink-0 inline-flex items-center justify-center size-12 rounded-xl bg-gradient-to-br from-primary to-secondary text-white shadow-[0_8px_30px_-8px_hsl(var(--color-primary)/0.6)]">
+        <span class="relative shrink-0 inline-flex items-center justify-center size-12 rounded-xl bg-gradient-to-br from-primary to-secondary text-white shadow-[0_8px_30px_-8px_hsl(var(--color-primary)/0.6)]">
+            <span class="absolute inset-0 rounded-xl bg-primary/40 animate-ping"></span>
             @switch($icon)
                 @case('ticket')
                     <x-ri-customer-service-2-line class="size-6" />
