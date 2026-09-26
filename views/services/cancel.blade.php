@@ -10,8 +10,9 @@
 
     <!-- Show you'll lose data warning if immediate cancellation is selected -->
     <template x-if="$wire.type === 'immediate'">
-        <div class="bg-orange-700 text-white p-4 rounded">
-            {{ __('services.cancel_immediate_warning') }}
+        <div class="bg-warning/15 border border-warning/30 text-warning p-4 rounded-xl flex items-start gap-2">
+            <x-ri-alert-line class="size-5 shrink-0 mt-0.5" />
+            <span>{{ __('services.cancel_immediate_warning') }}</span>
         </div>
     </template>
 

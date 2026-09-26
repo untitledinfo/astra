@@ -1,5 +1,5 @@
-<div class="bg-background-secondary p-6 rounded-xl mt-2">
-    <h1 class="text-2xl font-semibold mb-2">{{ __('ticket.create_ticket') }}</h1>
+<div class="astra-card astra-card-beam animate-astra-in p-6 mt-14">
+    <h1 class="text-2xl font-semibold mb-4">{{ __('ticket.create_ticket') }}</h1>
     <div class="grid grid-cols-2 gap-4">
         <x-form.input wire:model="subject" label="{{ __('ticket.subject') }}" name="subject" required />
         @if (count($departments) > 0)
@@ -60,7 +60,7 @@
                                 });
                             }                            
                         }">
-                        <div class="flex justify-center rounded-xl bg-background-secondary border border-dashed border-neutral px-6 py-2"
+                        <div class="flex justify-center rounded-xl bg-background-secondary border border-dashed border-neutral hover:border-primary/40 transition-colors px-6 py-2"
                             @dragover.prevent="drop = true" @dragleave.prevent="drop = false"
                             @drop.prevent="handleDrop($event)" :class="{'bg-background-secondary/50': drop}">
                             <div class="text-center">
@@ -83,10 +83,10 @@
                                     <div class="flex flex-wrap items-center justify-center gap-2 mt-1">
                                         <template x-for="file in selectedFiles" :key="file.name">
                                             <div
-                                                class="text-sm rounded-xl bg-gray-100 flex items-center gap-2 dark:bg-gray-800 p-1 py-0 w-fit">
+                                                class="text-sm rounded-xl bg-background border border-neutral flex items-center gap-2 p-1 py-0 w-fit">
                                                 <span class="flex-1" x-text="file.name"></span>
                                                 <button type="button"
-                                                    class="text-red-500 hover:text-red-700 text-lg h-fit"
+                                                    class="text-danger hover:opacity-70 text-lg h-fit"
                                                     @click="selectedFiles = selectedFiles.filter(f => f !== file)">
                                                     &times;
                                                 </button>

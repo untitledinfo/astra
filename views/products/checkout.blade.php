@@ -1,9 +1,9 @@
 <div class="container mt-14 flex flex-col md:grid md:grid-cols-4 gap-6">
-    <div class="flex flex-col gap-4 w-full col-span-3">
+    <div class="astra-card astra-card-beam animate-astra-in flex flex-col gap-4 w-full col-span-3 p-6">
         <h1 class="text-3xl font-bold">{{ $product->name }}</h1>
         <div class="flex flex-row w-full gap-4">
             @if ($product->image)
-                <img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}" class="max-w-40">
+                <img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}" class="max-w-40 rounded-xl border border-neutral">
             @endif
             <div class="max-h-28 overflow-y-auto w-full">
                 <article class="prose dark:prose-invert prose-sm">
@@ -76,8 +76,8 @@
             </x-form.configoption>
         @endforeach
     </div>
-    <div class="flex flex-col gap-2 w-full col-span-1 bg-background-secondary p-3 rounded-xl h-fit">
-        <h2 class="text-2xl font-semibold  mb-2">
+    <div class="astra-card astra-card-beam astra-reveal flex flex-col gap-2 w-full col-span-1 p-5 h-fit md:sticky md:top-24">
+        <h2 class="text-2xl font-semibold mb-2">
             {{ __('product.order_summary') }}
         </h2>
         @if ($total->total_tax > 0)
@@ -88,7 +88,7 @@
                 <h4>{{ \App\Classes\Settings::tax()->name }} ({{ \App\Classes\Settings::tax()->rate }}%):</h4> {{ $total->formatted->total_tax }}
             </div>
         @endif
-        <div class="text-lg font-semibold flex justify-between">
+        <div class="text-lg font-bold flex justify-between text-primary border-t border-neutral pt-2 mt-1">
             <h4>{{ __('product.total_today') }}:</h4> {{ $total }}
         </div>
         @if ($total->setup_fee > 0 && $plan->type == 'recurring')
@@ -99,10 +99,11 @@
         @endif
         @if (($product->stock > 0 || !$product->stock) && $product->price()->available)
             <div>
-                <x-button.primary wire:click="checkout" wire:loading.attr="disabled">
+                <x-button.primary wire:click="checkout" wire:loading.attr="disabled" class="!w-full">
                     <x-loading target="checkout" />
-                    <div wire:loading.remove wire:target="checkout">
+                    <div wire:loading.remove wire:target="checkout" class="flex items-center gap-2">
                         {{ __('product.checkout') }}
+                        <span class="astra-btn-arrow">→</span>
                     </div>
                 </x-button.primary>
             </div>

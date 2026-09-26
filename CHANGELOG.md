@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.4.0 — remaining pages done
+- Checkout page: main product panel is now a card, order summary is a sticky beam-card, checkout button spans full width with the arrow-slide.
+- 2FA screen upgraded to the gradient-border card, bigger/clearer code boxes, fixed a hardcoded red error color.
+- Service cancel warning box, service upgrade page (plan cards + sticky summary), and ticket-create page all restyled to match.
+- More hardcoded-color bugs fixed along the way (`orange-700`, `gray-100/800`, `red-500/600` scattered across cancel/upgrade/ticket-create) — all now use the theme's real tokens.
+- Every page in the theme now uses the same design system. Only thing left untouched by choice: Paymenter's own admin panel, which themes don't control.
+
 ## 2.3.0 — full pass
 - Styled every remaining major customer-facing page with the v2 design system (cards, border-beam, page headers, reveal-on-scroll): Services (list + detail), Invoices (list + detail), Products/category browsing + single product page, Cart, and both error pages (404/500).
 - Language switcher now shows a country flag next to each language.

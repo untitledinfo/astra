@@ -1,5 +1,5 @@
 <div class="container mt-14">
-    <h1 class="text-2xl font-bold">
+    <h1 class="text-2xl font-bold astra-shimmer-text inline-block">
         {{ __('services.upgrade_service', ['service' => $service->product->name]) }}
     </h1>
 
@@ -20,10 +20,11 @@
                 <input type="radio" name="upgrade" value="{{ $service->product->id }}" wire:model.live="upgrade"
                     class="hidden peer" id="product-{{ $service->product->id }}">
                 <label for="product-{{ $service->product->id }}"
-                    class="flex flex-col cursor-pointer bg-background-secondary hover:bg-background-secondary/80 border border-neutral peer-checked:border-secondary p-4 rounded-xl">
+                    class="astra-card astra-card-hover flex flex-col cursor-pointer peer-checked:border-primary peer-checked:shadow-[0_0_0_1px_hsl(var(--color-primary))] p-4">
                     <div
-                        class="rounded-full border border-background rounded-selector inline-flex items-center justify-center gap-2 align-middle bg-primary/60 w-fit px-2 py-0.5">
-                        <p class="">{{ __('services.current_plan') }}</p>
+                        class="rounded-full inline-flex items-center gap-1.5 bg-secondary/15 text-secondary text-xs font-semibold w-fit px-2.5 py-1 mb-2">
+                        <span class="size-1.5 rounded-full bg-secondary astra-status-dot"></span>
+                        {{ __('services.current_plan') }}
                     </div>
                     @if(theme('small_images', false))
                     <div class="flex gap-x-3 items-center">
@@ -61,11 +62,12 @@
                 <input type="radio" name="upgrade" value="{{ $product->id }}" wire:model.live="upgrade"
                     class="hidden peer" id="product-{{ $product->id }}">
                 <label for="product-{{ $product->id }}"
-                    class="flex flex-col cursor-pointer bg-background-secondary hover:bg-background-secondary/80 border border-neutral peer-checked:border-secondary p-4 rounded-xl">
+                    class="astra-card astra-card-hover flex flex-col cursor-pointer peer-checked:border-primary peer-checked:shadow-[0_0_0_1px_hsl(var(--color-primary))] p-4">
                     @if($upgrade == $product->id)
                     <div
-                        class="rounded-full border border-background rounded-selector inline-flex items-center justify-center gap-2 align-middle bg-primary w-fit px-2 py-0.5">
-                        <p class="">{{ __('services.new_plan') }}</p>
+                        class="rounded-full inline-flex items-center gap-1.5 bg-primary/15 text-primary text-xs font-semibold w-fit px-2.5 py-1 mb-2">
+                        <span class="size-1.5 rounded-full bg-primary astra-status-dot"></span>
+                        {{ __('services.new_plan') }}
                     </div>
                     @endif
                     @if(theme('small_images', false))
@@ -132,7 +134,7 @@
             </div>
             @endif
         </div>
-        <div class="flex flex-col gap-2 w-full col-span-1 bg-background-secondary p-3 rounded-xl h-fit">
+        <div class="astra-card astra-card-beam astra-reveal flex flex-col gap-2 w-full col-span-1 p-5 h-fit md:sticky md:top-24">
             <h4 class="text-lg font-semibold">{{ __('services.upgrade_summary') }}:</h4>
 
             <div class="flex items-center text-base">
@@ -148,12 +150,12 @@
 
             {{--  Total today --}}
             <div class="flex items-center text-base">
-                <span class="mr-2">{{ __('services.total_today') }}:</span>
-                <span class="text-base/50">{{ $this->totalToday() }}</span>
+                <span class="mr-2 font-semibold">{{ __('services.total_today') }}:</span>
+                <span class="font-bold text-primary">{{ $this->totalToday() }}</span>
             </div>
 
             <div class="flex flex-row justify-end gap-2 mt-2">
-                <x-button.primary class="h-fit" :wire:click="($upgradeProduct->upgradableConfigOptions()->count() > 0 && $step == 1)? 'nextStep' : 'doUpgrade'">
+                <x-button.primary class="h-fit !w-auto px-6" :wire:click="($upgradeProduct->upgradableConfigOptions()->count() > 0 && $step == 1)? 'nextStep' : 'doUpgrade'">
                     {{-- If the next upgradeProduct supports config upgrades, show those --}}
                     @if($upgradeProduct && $upgradeProduct->upgradableConfigOptions()->count() > 0 && $step == 1)
                         <span>{{ __('services.next_step') }}</span>

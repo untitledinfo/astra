@@ -1,11 +1,12 @@
 <section class="mx-auto w-full max-w-lg py-14">
-    <div class="card">
+    <div class="astra-gradient-border animate-astra-in">
+    <div class="bg-background-secondary rounded-2xl">
         <div class="flex flex-col items-center gap-2 p-5 sm:p-8 md:p-12">
-            <div class="flex items-center justify-center mb-4">
-                <x-ri-lock-password-fill class="size-8" />
+            <div class="flex items-center justify-center mb-4 size-14 rounded-xl bg-gradient-to-br from-primary to-secondary text-white shadow-[0_8px_30px_-8px_hsl(var(--color-primary)/0.6)]">
+                <x-ri-lock-password-fill class="size-6" />
             </div>
             <h1 class="mb-2 text-2xl font-bold">{{ __('auth.verify_2fa') }}</h1>
-            <p class="mb-6 text-base text-base/60">
+            <p class="mb-6 text-base text-muted">
                 {{ __('account.input.two_factor_code') }}
             </p>
             <form
@@ -65,27 +66,28 @@
                         type="text"
                         inputmode="numeric"
                         autofocus
-                        class="block w-9 rounded-xl border border-neutral px-2 py-1.5 text-center text-sm/6 placeholder-neutral/80 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none bg-background"
+                        class="block w-10 h-12 rounded-xl border border-neutral px-2 py-1.5 text-center text-lg font-semibold placeholder-neutral/80 focus:border-primary focus:ring-2 focus:ring-primary/40 focus:outline-none bg-background transition-colors"
                     />
 
-                    <input x-ref="num2" x-on:input="isNumber($refs.num2.value) ? $refs.num3.focus() : $refs.num2.value = ''" x-on:keydown.backspace="$refs.num2.value === '' ? $refs.num1.focus() : null" type="text" maxlength="1" class="block w-9 rounded-xl border border-neutral px-2 py-1.5 text-center text-sm/6 placeholder-neutral/80 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none bg-background" />
-                    <input x-ref="num3" x-on:input="isNumber($refs.num3.value) ? $refs.num4.focus() : $refs.num3.value = ''" x-on:keydown.backspace="$refs.num3.value === '' ? $refs.num2.focus() : null" type="text" maxlength="1" class="block w-9 rounded-xl border border-neutral px-2 py-1.5 text-center text-sm/6 placeholder-neutral/80 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none bg-background" />
+                    <input x-ref="num2" x-on:input="isNumber($refs.num2.value) ? $refs.num3.focus() : $refs.num2.value = ''" x-on:keydown.backspace="$refs.num2.value === '' ? $refs.num1.focus() : null" type="text" maxlength="1" class="block w-10 h-12 rounded-xl border border-neutral px-2 py-1.5 text-center text-lg font-semibold placeholder-neutral/80 focus:border-primary focus:ring-2 focus:ring-primary/40 focus:outline-none bg-background transition-colors" />
+                    <input x-ref="num3" x-on:input="isNumber($refs.num3.value) ? $refs.num4.focus() : $refs.num3.value = ''" x-on:keydown.backspace="$refs.num3.value === '' ? $refs.num2.focus() : null" type="text" maxlength="1" class="block w-10 h-12 rounded-xl border border-neutral px-2 py-1.5 text-center text-lg font-semibold placeholder-neutral/80 focus:border-primary focus:ring-2 focus:ring-primary/40 focus:outline-none bg-background transition-colors" />
 
                     <span class="text-sm text-base/60">-</span>
 
-                    <input x-ref="num4" x-on:input="isNumber($refs.num4.value) ? $refs.num5.focus() : $refs.num4.value = ''" x-on:keydown.backspace="$refs.num4.value === '' ? $refs.num3.focus() : null" type="text" maxlength="1" class="block w-9 rounded-xl border border-neutral px-2 py-1.5 text-center text-sm/6 placeholder-neutral/80 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none bg-background" />
-                    <input x-ref="num5" x-on:input="isNumber($refs.num5.value) ? $refs.num6.focus() : $refs.num5.value = ''" x-on:keydown.backspace="$refs.num5.value === '' ? $refs.num4.focus() : null" type="text" maxlength="1" class="block w-9 rounded-xl border border-neutral px-2 py-1.5 text-center text-sm/6 placeholder-neutral/80 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none bg-background" />
-                    <input x-ref="num6" x-on:input="if(isNumber($refs.num6.value)) { if(getCode().length === 6) submit(); } else { $refs.num6.value = '' }" x-on:keydown.backspace="$refs.num6.value === '' ? $refs.num5.focus() : null" type="text" maxlength="1" class="block w-9 rounded-xl border border-neutral px-2 py-1.5 text-center text-sm/6 placeholder-neutral/80 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none bg-background" />
+                    <input x-ref="num4" x-on:input="isNumber($refs.num4.value) ? $refs.num5.focus() : $refs.num4.value = ''" x-on:keydown.backspace="$refs.num4.value === '' ? $refs.num3.focus() : null" type="text" maxlength="1" class="block w-10 h-12 rounded-xl border border-neutral px-2 py-1.5 text-center text-lg font-semibold placeholder-neutral/80 focus:border-primary focus:ring-2 focus:ring-primary/40 focus:outline-none bg-background transition-colors" />
+                    <input x-ref="num5" x-on:input="isNumber($refs.num5.value) ? $refs.num6.focus() : $refs.num5.value = ''" x-on:keydown.backspace="$refs.num5.value === '' ? $refs.num4.focus() : null" type="text" maxlength="1" class="block w-10 h-12 rounded-xl border border-neutral px-2 py-1.5 text-center text-lg font-semibold placeholder-neutral/80 focus:border-primary focus:ring-2 focus:ring-primary/40 focus:outline-none bg-background transition-colors" />
+                    <input x-ref="num6" x-on:input="if(isNumber($refs.num6.value)) { if(getCode().length === 6) submit(); } else { $refs.num6.value = '' }" x-on:keydown.backspace="$refs.num6.value === '' ? $refs.num5.focus() : null" type="text" maxlength="1" class="block w-10 h-12 rounded-xl border border-neutral px-2 py-1.5 text-center text-lg font-semibold placeholder-neutral/80 focus:border-primary focus:ring-2 focus:ring-primary/40 focus:outline-none bg-background transition-colors" />
                 </div>
                 @error('code')
-                    <p class="text-sm text-red-600 dark:text-red-400 mt-2">{{ $message }}</p>
+                    <p class="text-sm text-danger mt-2">{{ $message }}</p>
                 @enderror
                 <div class="mt-2">
-                    <x-button.primary type="submit" class="">
+                    <x-button.primary type="submit" class="!w-full">
                         {{ __('auth.verify') }}
                     </x-button.primary>
                 </div>
             </form>
         </div>
+    </div>
     </div>
 </section>
